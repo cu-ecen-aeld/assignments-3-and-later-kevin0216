@@ -59,7 +59,7 @@ cd ${OUTDIR}/rootfs
 mkdir -p bin dev etc home lib lib64 proc sbin sys tmp usr var
 mkdir -p usr/bin usr/lib usr/sbin
 mkdir -p var/log
-mkdir -p home/conf
+mkdir -p etc/finder-app/conf
 
 cd "$OUTDIR"
 if [ ! -d "${OUTDIR}/busybox" ]
@@ -99,12 +99,13 @@ cd ${FINDER_APP_DIR}
 make clean
 make CROSS_COMPILE=${CROSS_COMPILE}
 
-cp ${FINDER_APP_DIR}/writer ${OUTDIR}/rootfs/home/
-cp ${FINDER_APP_DIR}/finder.sh ${OUTDIR}/rootfs/home/
+cp ${FINDER_APP_DIR}/writer ${OUTDIR}/rootfs/usr/bin/
+cp ${FINDER_APP_DIR}/finder.sh ${OUTDIR}/rootfs/usr/bin/
+cp ${FINDER_APP_DIR}/finder-test.sh ${OUTDIR}/rootfs/usr/bin/
 cp ${FINDER_APP_DIR}/finder-test.sh ${OUTDIR}/rootfs/home/
 cp ${FINDER_APP_DIR}/autorun-qemu.sh ${OUTDIR}/rootfs/home/
-cp ${FINDER_APP_DIR}/conf/username.txt ${OUTDIR}/rootfs/home/conf/
-cp ${FINDER_APP_DIR}/conf/assignment.txt ${OUTDIR}/rootfs/home/conf/
+cp ${FINDER_APP_DIR}/conf/username.txt ${OUTDIR}/rootfs/etc/finder-app/conf/
+cp ${FINDER_APP_DIR}/conf/assignment.txt ${OUTDIR}/rootfs/etc/finder-app/conf/
 
 sudo chown -R root:root ${OUTDIR}/rootfs
 
